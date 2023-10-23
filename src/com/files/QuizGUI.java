@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 
@@ -132,24 +133,29 @@ public class QuizGUI extends JFrame implements ActionListener {
 		optionA = new JButton(qn.getQuesAndOption(currentQuestion).get(1));
 		optionA.setBounds(374, 166, 147, 68);
 		contentPane.add(optionA);
+		optionA.addActionListener(this);
 		
 		optionB = new JButton(qn.getQuesAndOption(currentQuestion).get(2));
 		optionB.setBounds(549, 166, 147, 68);
 		contentPane.add(optionB);
+		optionB.addActionListener(this);
 		
 		optionC = new JButton(qn.getQuesAndOption(currentQuestion).get(3));
 		optionC.setBounds(374, 274, 147, 68);
 		contentPane.add(optionC);
+		optionC.addActionListener(this);
 		
 		optionD = new JButton(qn.getQuesAndOption(currentQuestion).get(4));
 		optionD.setBounds(549, 274, 147, 68);
 		contentPane.add(optionD);
+		optionD.addActionListener(this);
 		
 		// next button
 		nextButton = new JButton("Next");
 		nextButton.setBounds(492, 398, 85, 21);
 		contentPane.add(nextButton);
 		nextButton.setVisible(false);
+		nextButton.addActionListener(this);
 
 		
 	}
@@ -158,10 +164,10 @@ public class QuizGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		
 		if(command.equals("Next")) {
 			nextButton.setVisible(false);
 			firstChoice = false;
+			System.out.println(score);
 			updateGUI();
 		} else {
 			JButton btn = (JButton) e.getSource();
@@ -175,15 +181,41 @@ public class QuizGUI extends JFrame implements ActionListener {
 			nextButton.setVisible(true);
 			firstChoice = true;
 		}
+		if(currentQuestion==10) {
+			showPopUp(score);
+			return;
+		}
 	}
 	
 	private void updateGUI() {
-		currentQuestionNumberLabel = new JLabel("Question : " + (++currentQuestion));
+		currentQuestionNumberLabel.setText(("Question : " + (++currentQuestion)));
 		currentQuestionLabel.setText(qn.getQuesAndOption(currentQuestion).get(0));
-		optionA = new JButton(qn.getQuesAndOption(currentQuestion).get(1));
-		optionB = new JButton(qn.getQuesAndOption(currentQuestion).get(2));
-		optionC = new JButton(qn.getQuesAndOption(currentQuestion).get(3));
-		optionD = new JButton(qn.getQuesAndOption(currentQuestion).get(4));
+		optionA.setBackground(new Color(240, 240, 240));
+		optionB.setBackground(new Color(240, 240, 240));
+		optionC.setBackground(new Color(240, 240, 240));
+		optionD.setBackground(new Color(240, 240, 240));
+		optionA.setText(qn.getQuesAndOption(currentQuestion).get(1));
+		optionB.setText(qn.getQuesAndOption(currentQuestion).get(2));
+		optionC.setText(qn.getQuesAndOption(currentQuestion).get(3));
+		optionD.setText(qn.getQuesAndOption(currentQuestion).get(4));
+		
+	}
+	
+private void showPopUp(int score) {
+		
+		JDialog resultPopUp = new JDialog();
+		resultPopUp.setSize(227,124);
+		resultPopUp.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		resultPopUp.setResizable(false);
+		
+		JLabel resultLabel = new JLabel("Your Score is : " + score + "/10");
+		resultLabel.setFont(new Font("Dialog",Font.PLAIN,18));
+		resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		resultPopUp.getContentPane().add(resultLabel,BorderLayout.CENTER);
+		
+		resultPopUp.add(resultLabel);
+		resultPopUp.setVisible(true);
+		resultPopUp.setLocationRelativeTo(this);
 		
 	}
 	
