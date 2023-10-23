@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.SimpleAttributeSet;
@@ -17,12 +16,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 
 public class QuizGUI extends JFrame implements ActionListener {
@@ -81,7 +77,6 @@ public class QuizGUI extends JFrame implements ActionListener {
 		
 		// initialize Questions class
 		Questions qns = new Questions();
-		//List<String> qList;
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -91,11 +86,6 @@ public class QuizGUI extends JFrame implements ActionListener {
 	}
 	
 	private void addComponents() {
-		
-		/*
-		 * JPanel jPanel = new JPanel(); jPanel.setLayout(springLayout);
-		 */
-		
 		
 		qn.getQuesAndOption(currentQuestion);
 		
@@ -164,10 +154,10 @@ public class QuizGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		if(command.equals("Next")) {
+		if(command.equals("Next") && currentQuestion!=10) {
 			nextButton.setVisible(false);
 			firstChoice = false;
-			System.out.println(score);
+			//System.out.println(score);
 			updateGUI();
 		} else {
 			JButton btn = (JButton) e.getSource();
@@ -181,7 +171,7 @@ public class QuizGUI extends JFrame implements ActionListener {
 			nextButton.setVisible(true);
 			firstChoice = true;
 		}
-		if(currentQuestion==10) {
+		if(firstChoice && currentQuestion==10) {
 			showPopUp(score);
 			return;
 		}
