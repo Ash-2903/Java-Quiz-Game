@@ -121,27 +121,36 @@ public class QuizGUI extends JFrame implements ActionListener {
 		// buttons
 		
 		optionA = new JButton(qn.getQuesAndOption(currentQuestion).get(1));
+		optionA.setForeground(new Color(255, 255, 255));
+		optionA.setBackground(new Color(199, 142, 255));
 		optionA.setBounds(374, 166, 147, 68);
 		contentPane.add(optionA);
 		optionA.addActionListener(this);
 		
 		optionB = new JButton(qn.getQuesAndOption(currentQuestion).get(2));
+		optionB.setForeground(new Color(255, 255, 255));
+		optionB.setBackground(new Color(199, 142, 255));
 		optionB.setBounds(549, 166, 147, 68);
 		contentPane.add(optionB);
 		optionB.addActionListener(this);
 		
 		optionC = new JButton(qn.getQuesAndOption(currentQuestion).get(3));
+		optionC.setForeground(new Color(255, 255, 255));
+		optionC.setBackground(new Color(199, 142, 255));
 		optionC.setBounds(374, 274, 147, 68);
 		contentPane.add(optionC);
 		optionC.addActionListener(this);
 		
 		optionD = new JButton(qn.getQuesAndOption(currentQuestion).get(4));
+		optionD.setForeground(new Color(255, 255, 255));
+		optionD.setBackground(new Color(199, 142, 255));
 		optionD.setBounds(549, 274, 147, 68);
 		contentPane.add(optionD);
 		optionD.addActionListener(this);
 		
 		// next button
 		nextButton = new JButton("Next");
+		nextButton.setBackground(new Color(239, 239, 239));
 		nextButton.setBounds(492, 398, 85, 21);
 		contentPane.add(nextButton);
 		nextButton.setVisible(false);
@@ -180,10 +189,10 @@ public class QuizGUI extends JFrame implements ActionListener {
 	private void updateGUI() {
 		currentQuestionNumberLabel.setText(("Question : " + (++currentQuestion)));
 		currentQuestionLabel.setText(qn.getQuesAndOption(currentQuestion).get(0));
-		optionA.setBackground(new Color(240, 240, 240));
-		optionB.setBackground(new Color(240, 240, 240));
-		optionC.setBackground(new Color(240, 240, 240));
-		optionD.setBackground(new Color(240, 240, 240));
+		optionA.setBackground(new Color(199, 142, 255));
+		optionB.setBackground(new Color(199, 142, 255));
+		optionC.setBackground(new Color(199, 142, 255));
+		optionD.setBackground(new Color(199, 142, 255));
 		optionA.setText(qn.getQuesAndOption(currentQuestion).get(1));
 		optionB.setText(qn.getQuesAndOption(currentQuestion).get(2));
 		optionC.setText(qn.getQuesAndOption(currentQuestion).get(3));
@@ -203,7 +212,7 @@ private void showPopUp(int score) {
 		resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		resultPopUp.getContentPane().add(resultLabel,BorderLayout.CENTER);
 		
-		resultPopUp.add(resultLabel);
+		resultPopUp.getContentPane().add(resultLabel);
 		resultPopUp.setVisible(true);
 		resultPopUp.setLocationRelativeTo(this);
 		
