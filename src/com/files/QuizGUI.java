@@ -64,7 +64,7 @@ public class QuizGUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 223, 223));
+		contentPane.setBackground(new Color(255, 255, 185));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setResizable(false);
 		getContentPane().setLayout(null);
@@ -107,7 +107,7 @@ public class QuizGUI extends JFrame implements ActionListener {
 		currentQuestionLabel = new JTextPane();
 		currentQuestionLabel.setText(qn.getQuesAndOption(currentQuestion).get(0));
 		currentQuestionLabel.setForeground(new Color(0, 0, 0));
-		currentQuestionLabel.setBackground(new Color(255, 223, 223));
+		currentQuestionLabel.setBackground(new Color(255, 255, 185));
 		currentQuestionLabel.setFont(new Font("DialogInput", Font.BOLD, 18));
 		currentQuestionLabel.setBounds(40,199,247,143);
 		
@@ -203,7 +203,7 @@ private void showPopUp(int score) {
 		resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		resultPopUp.getContentPane().add(resultLabel,BorderLayout.CENTER);
 		
-		resultPopUp.add(resultLabel);
+		resultPopUp.getContentPane().add(resultLabel);
 		resultPopUp.setVisible(true);
 		resultPopUp.setLocationRelativeTo(this);
 		
